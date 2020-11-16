@@ -35,8 +35,26 @@ void init_mqtt_local() {
 
 void pub_stat() {
 
-  char buffer[10];
-  dtostrf(fire.NUMFirePIXELS, 0, 0, buffer);
+  char buffer[256];
+  //dtostrf(fire.NUMFirePIXELS, 0, 0, buffer);
+
+  // Allocate the JSON document
+  //
+  // Inside the brackets, 200 is the RAM allocated to this document.
+  // Don't forget to change this value to match your requirement.
+  // Use arduinojson.org/v6/assistant to compute the capacity.
+  StaticJsonDocument<200> jsondoc;
+
+  // StaticJsonObject allocates memory on the stack, it can be
+  // replaced by DynamicJsonDocument which allocates in the heap.
+  //
+  // DynamicJsonDocument  doc(200);
+
+  // Add values in the document
+  //
+  jsondoc["anzled"] = fire.NUMFirePIXELS;
+  int n  = serializeJson(jsondoc, buffer);
+
   client.publish(mqtt_pubtopic_status, buffer, true);
 
 }

@@ -1,4 +1,5 @@
 #include "cy_mqtt_v1.h"
+#include <ArduinoJson.h>
 
 const char* mqtt_pubtopic_status_suff = "tele/status";
 String mqtt_pubtopic_status_s;
