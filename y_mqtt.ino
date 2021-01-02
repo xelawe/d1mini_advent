@@ -66,7 +66,7 @@ void check_mqtt_local() {
     gv_mqtt_pup_stat = false;
   }
 
-  check_mqtt();
+  check_mqtt_reset();
 
 }
 
